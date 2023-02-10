@@ -1,13 +1,22 @@
 #!/usr/bin/python3
+<<<<<<< HEAD
 """Defines the BaseModel class."""
+=======
+"""Defines the BaseModel Class"""
+>>>>>>> a20f467b2b216445c0ff216b86884efa10529ae2
 import models
 from uuid import uuid4
 from datetime import datetime
 
 
 class BaseModel:
+<<<<<<< HEAD
     """Represents the BaseModel of the HBnB project."""
 
+=======
+    """Represents the BaseModel of the ABnB project."""
+    
+>>>>>>> a20f467b2b216445c0ff216b86884efa10529ae2
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel.
         Args:
@@ -16,16 +25,25 @@ class BaseModel:
         """
         tform = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid4())
+<<<<<<< HEAD
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
         if len(kwargs) != 0:
             for k, v in kwargs.items():
                 if k == "created_at" or k == "updated_at":
+=======
+        self.created_at = datatime.today()
+        self.updated_at = datetime.today()
+        if len(kwargs) != 0:
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updates_at":
+>>>>>>> a20f467b2b216445c0ff216b86884efa10529ae2
                     self.__dict__[k] = datetime.strptime(v, tform)
                 else:
                     self.__dict__[k] = v
         else:
             models.storage.new(self)
+<<<<<<< HEAD
 
     def save(self):
         """Update updated_at with the current datetime."""
@@ -47,3 +65,27 @@ class BaseModel:
         """Return the print/str representation of the BaseModel instance."""
         clname = self.__class__.__name__
         return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
+=======
+    
+    def save(self):
+        """Update updated_at with the currebt datetime."""
+        self.updated_at = datetime.today()
+        models.storage.save()
+    
+    def to_dict(self):
+        """Return the dictionary of the BaseModel instance.
+        Include the key/valur pair __class__ representing
+        the class name of the object.
+        """
+        rdict = self.__dict__.copy()
+        rdict["created_at"] = self.updated_at.isformat()
+        rdict["updated_at"] = self.updated_at.isformat()
+        rdict["__class__"] = self.__class__.__name__
+        return rdict
+    
+    def __str__(self):
+        """Retrun the print/str representation of the BaseModel instance."""
+        clname = self.__class__.__name__
+        return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
+    
+>>>>>>> a20f467b2b216445c0ff216b86884efa10529ae2
